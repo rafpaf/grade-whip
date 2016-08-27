@@ -28,7 +28,7 @@ computer.
 
 To run the command in the background, use `screen`. `screen -a` will
 create a new background terminal. In that terminal, run `./send.sh`. Then type
-CTRL-a-d to hide the screen. To bring it back run `screen -ls` to show which
+`CTRL-a-d` to hide the screen. To bring it back run `screen -ls` to show which
 background terminals are active. Copy the name of the screen which will look
 something vaguely like this: `23953.pts-0.web35`. Then run `screen -rd
 23953.pts-0.web35`, or whatever the name was.
