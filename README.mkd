@@ -1,0 +1,11 @@
+If you have a student named Immanuel Kant whose email is ikant@konigsberg.edu,
+then create a file here called `students.csv` and write this:
+
+    Kant,Immanuel,ikant,
+
+Repeat for each student, one line per student. Note that there are no spaces
+after the commas, and there is a final comma at the end of the line.
+
+Edit the variables at the beginning of `send.sh`. Edit the text of the email.
+Test by removing the `#` at the start of the line `#to="$MY_REPLY_TO"`. Then
+you will receive all the emails instead of your students.

@@ -14,13 +14,16 @@ MY_EMAIL="raffi@ex.plicat.io"
 # My gmail address.
 MY_REPLY_TO="raphael.kl@gmail.com"
 
-# Where the remote files are hosted
+# The URL where the remote files are hosted
 HOST="http://ex.plicat.io/"
 
-# Where you will put the PDFs containing students papers. Each PDF must be
+# The path on the remote server where the files will be hosted
+WEBROOT="~/webapps/explicatio"
+
+# Where you will put the PDFs containing students' papers. Each PDF must be
 # called studentid.pdf where studentid is the first part of the student's email
 # address (before the @).
-UPLOAD_DIR=~/projects/2016/phil203/assignments/paper3
+UPLOAD_DIR="~/projects/2016/phil203/assignments/paper3"
 
 # The directory on the remote server where directories will be created
 # containing students' papers.
@@ -28,6 +31,10 @@ DOWNLOAD_DIR="2016/phil203/assignments"
 
 # Each student will be able to download a file with this name.
 PDFNAME="paper3.pdf"
+
+# The length of the password that will be appended to each directory containing
+# a student's paper for security.
+PWLENGTH=8
 
 warn() {
     # Warn the grader that the emails will be going soon.
@@ -45,16 +52,14 @@ send() {
     do
         # The dummy is there so that $studentid doesn't end with a newline
         echo $studentid
-        pwlength=8
-        pw=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c $pwlength`
+        pw=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c $PWLENGTH`
         new_dir="$DOWNLOAD_DIR/$studentid-$pw"
-        webroot="~/webapps/explicatio"
-        mkdir -p $webroot/$new_dir
-        path="$new_dir/paper3.pdf"
-        cp $UPLOAD_DIR/$studentid.pdf "$webroot/$path"
+        mkdir -p $WEBROOT/$new_dir
+        path="$new_dir/$PDFNAME"
+        cp $UPLOAD_DIR/$studentid.pdf "$WEBROOT/$path"
         url="$HOST$path"
-        #to="raphael.kl+$studentid@gmail.com"
         to="$studentid"
+        #to="$MY_REPLY_TO"
         echo "From: $MY_NAME <$MY_EMAIL>
 Reply-to: $MY_NAME <$MY_REPLY_TO>
 Subject: $EMAIL_SUBJECT
