@@ -1,3 +1,6 @@
+Whip yourself into grading student papers efficiently by scheduling delivery
+of graded PDFs at a future time.
+
 If you have a student named Immanuel Kant whose email is ikant@konigsberg.edu,
 then create a file here called `students.csv` and write this:
 
