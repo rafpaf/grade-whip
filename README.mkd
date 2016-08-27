@@ -20,3 +20,15 @@ warn 1; sleep 1m       # Warn that emails will go in 1 minute.
 Before you run the script, test by removing the `#` at the start of the line
 `#to="$MY_REPLY_TO"` in `send.sh`. Then you will receive all the emails instead
 of your students.
+
+When are you are ready to start the timer, run `send.sh` on your remote
+computer.
+
+# Running the command in the background
+
+To run the command in the background, use `screen`. `screen -a` will
+create a new background terminal. In that terminal, run `./send.sh`. Then type
+CTRL-a-d to hide the screen. To bring it back run `screen -ls` to show which
+background terminals are active. Copy the name of the screen which will look
+something vaguely like this: `23953.pts-0.web35`. Then run `screen -rd
+23953.pts-0.web35`, or whatever the name was.
