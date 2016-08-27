@@ -1,5 +1,9 @@
+# grade-whip
+
 Whip yourself into grading student papers efficiently by scheduling delivery
 of graded PDFs at a future time.
+
+## Installation
 
 If you have a student named Immanuel Kant whose email is ikant@konigsberg.edu,
 then create a file here called `students.csv` and write this:
@@ -27,7 +31,7 @@ of your students.
 When are you are ready to start the timer, run `send.sh` on your remote
 computer.
 
-# Running the command in the background
+## Running `send.sh` in the background
 
 To run the command in the background, use `screen`. `screen -a` will
 create a new background terminal. In that terminal, run `./send.sh`. Then type
