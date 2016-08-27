@@ -11,11 +11,11 @@ Edit the `warn` and `sleep` commands to determine when the emails will go and
 when you will be warned. For example, to send the grades in 24 hours, with
 several warnings, use these commands:
 
-warn 1440; sleep 1200m # Warn that emails will go in 24 hours
-warn 240; sleep 180m   # Warn that emails will go in 4 hours
-warn 60; sleep 50m     # Warn that emails will go in 1 hour
-warn 10; sleep 9m      # Warn that emails will go in 10 minutes
-warn 1; sleep 1m       # Warn that emails will go in 1 minute.
+    warn 1440; sleep 1200m # Warn that emails will go in 24 hours
+    warn 240; sleep 180m   # Warn that emails will go in 4 hours
+    warn 60; sleep 50m     # Warn that emails will go in 1 hour
+    warn 10; sleep 9m      # Warn that emails will go in 10 minutes
+    warn 1; sleep 1m       # Warn that emails will go in 1 minute.
 
 Before you run the script, test by removing the `#` at the start of the line
 `#to="$MY_REPLY_TO"` in `send.sh`. Then you will receive all the emails instead
