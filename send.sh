@@ -1,38 +1,70 @@
-warn() {
-    echo "From: Raffi Krut-Landau <raffi@ex.plicat.io>
-    Reply-to: Raffi Krut-Landau <raphael.kl@gmail.com>
-    Subject: Emails will go in $1 minutes
-    To: raphael.kl@gmail.com
+###########
+# OPTIONS #
+###########
 
-    Emails will go in $1 minutes" | sendmail raphael.kl@gmail.com
+# I assume that student emails are all something@university.edu. So put your
+# @university.edu in this variable.
+EMAIL_SUFFIX="@princeton.edu"
+
+MY_NAME="Raffi Krut-Landau"
+
+# On my server I send from this address.
+MY_EMAIL="raffi@ex.plicat.io"
+
+# My gmail address.
+MY_REPLY_TO="raphael.kl@gmail.com"
+
+# Where the remote files are hosted
+HOST="http://ex.plicat.io/"
+
+# Where you will put the PDFs containing students papers. Each PDF must be
+# called studentid.pdf where studentid is the first part of the student's email
+# address (before the @).
+UPLOAD_DIR=~/projects/2016/phil203/assignments/paper3
+
+# The directory on the remote server where directories will be created
+# containing students' papers.
+DOWNLOAD_DIR="2016/phil203/assignments"
+
+# Each student will be able to download a file with this name.
+PDFNAME="paper3.pdf"
+
+warn() {
+    # Warn the grader that the emails will be going soon.
+    echo "From: $MY_NAME <$MY_EMAIL>
+    Reply-to: $MY_NAME <$MY_REPLY_TO>
+    Subject: Emails will go in $1 minutes
+    To: $MY_REPLY_TO
+
+    Emails will go in $1 minutes" | sendmail $MY_REPLY_TO
 }
 
 send() {
+    # Read from students.csv and send emails.
     while IFS=, read lastname firstname studentid dummy
     do
         # The dummy is there so that $studentid doesn't end with a newline
         echo $studentid
         pwlength=8
         pw=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c $pwlength`
-        new_dir="2016/phil203/assignments/$studentid-$pw"
+        new_dir="$DOWNLOAD_DIR/$studentid-$pw"
         webroot="~/webapps/explicatio"
         mkdir -p $webroot/$new_dir
         path="$new_dir/paper3.pdf"
-        cp $original_dir/$studentid.pdf "$webroot/$path"
-        url="http://ex.plicat.io/$path"
+        cp $UPLOAD_DIR/$studentid.pdf "$webroot/$path"
+        url="$HOST$path"
         #to="raphael.kl+$studentid@gmail.com"
-        to="$studentid@princeton.edu"
-        echo "From: Raffi Krut-Landau <raffi@ex.plicat.io>
-Reply-to: Raffi Krut-Landau <raphael.kl@gmail.com>
-Subject: Paper 3
+        to="$studentid"
+        echo "From: $MY_NAME <$MY_EMAIL>
+Reply-to: $MY_NAME <$MY_REPLY_TO>
+Subject: $EMAIL_SUBJECT
 To: $to
 
 Dear $firstname,
 
-I hope this email finds you doing well. To find your third paper, with my
-comments, please navigate here: $url
+I hope this email finds you doing well. Your third paper, with my comments, can be found here: $url
 
-All best wishes,
+All my best wishes,
 Raffi" | sendmail $to
 
     done <students.csv
@@ -68,14 +100,11 @@ warn 1; sleep 1m
 
 send
 
-# Put papers here in pdf form as studentid.pdf
-original_dir=~/projects/2016/phil203/assignments/paper3
-
 #######################
 
-echo "From: Raffi Krut-Landau <raffi@ex.plicat.io>
-Reply-to: Raffi Krut-Landau <raphael.kl@gmail.com>
+echo "From: $MY_NAME <$MY_EMAIL>
+Reply-to: $MY_NAME <$MY_REPLY_TO>
 Subject: Emails sent
-To: raphael.kl@gmail.com
+To: $MY_REPLY_TO
 
-Emails sent" | sendmail raphael.kl@gmail.com
+Emails sent" | sendmail $MY_REPLY_TO
