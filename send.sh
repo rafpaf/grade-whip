@@ -4,7 +4,7 @@
 
 # I assume that student emails are all something@university.edu. So put your
 # @university.edu in this variable.
-EMAIL_SUFFIX="@princeton.edu"
+EMAIL_SUFFIX="@upenn.edu"
 
 MY_NAME="Raffi Krut-Landau"
 
@@ -12,7 +12,7 @@ MY_NAME="Raffi Krut-Landau"
 MY_EMAIL="raffi@ex.plicat.io"
 
 # My gmail address.
-MY_REPLY_TO="raphael.kl@gmail.com"
+MY_REPLY_TO="rkrut@sas.upenn.edu"
 
 # The URL where the remote files are hosted
 HOST="http://ex.plicat.io/"
@@ -23,14 +23,14 @@ WEBROOT="~/webapps/explicatio"
 # Where you will put the PDFs containing students' papers. Each PDF must be
 # called studentid.pdf where studentid is the first part of the student's email
 # address (before the @).
-UPLOAD_DIR="~/projects/2016/phil203/assignments/paper3"
+UPLOAD_DIR="~/projects/2020/phil004/assignments/paper2"
 
 # The directory on the remote server where directories will be created
 # containing students' papers.
-DOWNLOAD_DIR="2016/phil203/assignments"
+DOWNLOAD_DIR="2020/phil004/assignments"
 
 # Each student will be able to download a file with this name.
-PDFNAME="paper3.pdf"
+COMMENTFILENAME="paper2.mp3"
 
 # The length of the password that will be appended to each directory containing
 # a student's paper for security.
@@ -55,8 +55,8 @@ send() {
         pw=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c $PWLENGTH`
         new_dir="$DOWNLOAD_DIR/$studentid-$pw"
         mkdir -p $WEBROOT/$new_dir
-        path="$new_dir/$PDFNAME"
-        cp $UPLOAD_DIR/$studentid.pdf "$WEBROOT/$path"
+        path="$new_dir/$COMMENTFILENAME"
+        cp $UPLOAD_DIR/$studentid.mp3 "$WEBROOT/$path"
         url="$HOST$path"
         to="$studentid"
         #to="$MY_REPLY_TO"
@@ -67,17 +67,27 @@ To: $to
 
 Dear $firstname,
 
-I hope this email finds you doing well. Your third paper, with my comments, can be found here: $url
+I hope this email finds you doing well. Please find my comments on your second paper here: $url
 
-All my best wishes,
+Best wishes,
 Raffi" | sendmail $to
 
     done <students.csv
 }
 
-#warn 1020; sleep 600m
-#warn 420; sleep 30m
-#warn 390; sleep 30m
+warn 1080; sleep 60m
+warn 1020; sleep 60m
+warn 960; sleep 60m
+warn 900; sleep 60m
+warn 840; sleep 60m
+warn 780; sleep 60m
+warn 720; sleep 60m
+warn 660; sleep 60m
+warn 600; sleep 60m
+warn 540; sleep 60m
+warn 480; sleep 60m
+warn 420; sleep 30m
+warn 390; sleep 30m
 warn 360; sleep 30m
 warn 330; sleep 30m
 warn 300; sleep 30m
