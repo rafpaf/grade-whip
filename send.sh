@@ -4,7 +4,7 @@
 
 # I assume that student emails are all something@university.edu. So put your
 # @university.edu in this variable.
-EMAIL_SUFFIX="@princeton.edu"
+EMAIL_SUFFIX="@sas.upenn.edu"
 
 MY_NAME="Raffi Krut-Landau"
 
@@ -23,14 +23,14 @@ WEBROOT="~/webapps/explicatio"
 # Where you will put the PDFs containing students' papers. Each PDF must be
 # called studentid.pdf where studentid is the first part of the student's email
 # address (before the @).
-UPLOAD_DIR="~/projects/2016/phil203/assignments/paper3"
+UPLOAD_DIR="~/o/isp/2021/seminarpaper1"
 
 # The directory on the remote server where directories will be created
 # containing students' papers.
-DOWNLOAD_DIR="2016/phil203/assignments"
+DOWNLOAD_DIR="2021/isp/seminarpaper1"
 
 # Each student will be able to download a file with this name.
-PDFNAME="paper3.pdf"
+PDFNAME="paper1.pdf"
 
 # The length of the password that will be appended to each directory containing
 # a student's paper for security.
@@ -75,9 +75,9 @@ Raffi" | sendmail $to
     done <students.csv
 }
 
-#warn 1020; sleep 600m
-#warn 420; sleep 30m
-#warn 390; sleep 30m
+warn 720; sleep 400m
+warn 420; sleep 30m
+warn 390; sleep 30m
 warn 360; sleep 30m
 warn 330; sleep 30m
 warn 300; sleep 30m
@@ -113,3 +113,5 @@ Subject: Emails sent
 To: $MY_REPLY_TO
 
 Emails sent" | sendmail $MY_REPLY_TO
+
+
